@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Rinku.Services.Main.Service.RinkuService" CodeBehind="RinkuService.svc.cs" %>
