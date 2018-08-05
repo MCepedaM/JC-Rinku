@@ -38,10 +38,12 @@ namespace Rinku.Data
         }
 
         public IDbSet<Employee> Empleado { get; set; }
-  
+        public IDbSet<Movement> Movimiento { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            //modelBuilder.Entity<Employee>().HasMany(s => s.MyMovements);
             //modelBuilder.Configurations.Add(new EmpleadoMapping());
         }
     }

@@ -22,8 +22,10 @@ namespace Rinku.Services.Main.Service
     public class RinkuService : IRinkuService
     {
         #region Variables
-        private IRepository<Employee> _EmployeeRepository;
         private ILifetimeScope _resolver;
+        private IRepository<Employee> _EmployeeRepository;
+        private IRepository<Movement> _MovementRepository;
+
         #endregion Variables
 
         #region Construtores
@@ -33,7 +35,8 @@ namespace Rinku.Services.Main.Service
             _resolver = container.BeginLifetimeScope();
 
             _EmployeeRepository = _resolver.Resolve<IRepository<Employee>>();
-            
+            _MovementRepository = _resolver.Resolve<IRepository<Movement>>();
+
         }
         #endregion Construtores
 
@@ -67,5 +70,41 @@ namespace Rinku.Services.Main.Service
         }
 
         #endregion Empleados
+
+        #region Movimientos
+
+        public bool AddUpdateMovimientos(Movement mov)
+        {
+            mov.Empleado = _EmployeeRepository.Get(mov.Empleado.Id);
+            if (mov.Id == 0)
+                _MovementRepository.Add(mov);
+            else
+                _MovementRepository.Update(mov);
+            _MovementRepository.SaveChanges();
+
+            return true;
+        }
+
+        public List<Movement> GetMovimientos(DateTime fechainicio, DateTime FechaFin)
+        {
+            var resulr = _MovementRepository.GetAll(w => w.Fecha >= fechainicio && w.Fecha <= FechaFin, p=> p.Empleado).ToList();
+            return resulr;
+        }
+
+        public List<Movement> GetMovimientosByEmpleado(Employee emp, DateTime fechainicio, DateTime FechaFin)
+        {
+            return _MovementRepository.GetAll(w => w.Empleado.Id == emp.Id  && w.Fecha >= fechainicio && w.Fecha <= FechaFin, p => p.Empleado).ToList();
+        }
+
+        public bool DeleteMoviento(Movement mov)
+        {
+            _MovementRepository.Delete(mov.Id);
+            _MovementRepository.SaveChanges();
+
+            return true;
+        }
+
+        #endregion Movimientos
+
     }
 }
