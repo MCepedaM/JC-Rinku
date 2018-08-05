@@ -51,6 +51,11 @@
   <ItemGroup>
     <Compile Include="EfRepositoryBase.cs" />
     <Compile Include="EfWorkspace.cs" />
+    <Compile Include="Migrations\201808051900134_InitialCreate.cs" />
+    <Compile Include="Migrations\201808051900134_InitialCreate.Designer.cs">
+      <DependentUpon>201808051900134_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelContext.cs" />
     <Compile Include="ModelContextInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -75,6 +80,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\201808051900134_InitialCreate.resx">
+      <DependentUpon>201808051900134_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

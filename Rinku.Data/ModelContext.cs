@@ -1,4 +1,5 @@
-﻿using System.Data.Common;
+﻿using Rinku.Domain;
+using System.Data.Common;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.ModelConfiguration.Conventions;
@@ -36,7 +37,7 @@ namespace Rinku.Data
         {
         }
 
-        //public IDbSet<Empleado> Empleado { get; set; }
+        public IDbSet<Employee> Empleado { get; set; }
   
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
