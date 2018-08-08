@@ -55,9 +55,9 @@
     <Compile Include="Migrations\201808051900134_InitialCreate.Designer.cs">
       <DependentUpon>201808051900134_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201808051933497_Objeto-Movimiento.cs" />
-    <Compile Include="Migrations\201808051933497_Objeto-Movimiento.Designer.cs">
-      <DependentUpon>201808051933497_Objeto-Movimiento.cs</DependentUpon>
+    <Compile Include="Migrations\201808082116434_ObjectMovement.cs" />
+    <Compile Include="Migrations\201808082116434_ObjectMovement.Designer.cs">
+      <DependentUpon>201808082116434_ObjectMovement.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelContext.cs" />
@@ -87,14 +87,15 @@
     <EmbeddedResource Include="Migrations\201808051900134_InitialCreate.resx">
       <DependentUpon>201808051900134_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808051933497_Objeto-Movimiento.resx">
-      <DependentUpon>201808051933497_Objeto-Movimiento.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201808082116434_ObjectMovement.resx">
+      <DependentUpon>201808082116434_ObjectMovement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

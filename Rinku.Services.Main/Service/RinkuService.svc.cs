@@ -13,6 +13,7 @@ using System.ServiceModel.Activation;
 using Autofac.Integration.Mvc;
 using System.Web.Http.Dependencies;
 using System.Web.Mvc;
+using System.Data.SqlClient;
 
 namespace Rinku.Services.Main.Service
 {
@@ -106,5 +107,14 @@ namespace Rinku.Services.Main.Service
 
         #endregion Movimientos
 
+        #region Calculo Salarios
+        public List<Salary> GetSalarios(DateTime fechainicio, DateTime FechaFin, int IdEmpleado)
+        {
+            SqlParameter[] valores = { new SqlParameter("@FechaInicial", fechainicio.Date), new SqlParameter("@FechaFinal", FechaFin.Date.AddDays(1)), new SqlParameter("@IdUsuario", IdEmpleado) };
+
+            return _MovementRepository.ExecuteProcedure<Salary>("msp_CalculaSueldo @FechaInicial, @FechaFinal, @IdUsuario", valores);
+        }
+
+        #endregion Calculo Salarios
     }
 }

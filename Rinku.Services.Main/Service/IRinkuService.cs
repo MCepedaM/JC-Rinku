@@ -82,5 +82,18 @@ namespace Rinku.Services.Main.Service
 
         #endregion Movimientos
 
+        #region Calculo Salarios
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fechainicio"></param>
+        /// <param name="FechaFin"></param>
+        /// <param name="IdEmpleado"></param>
+        /// <returns></returns>
+        [OperationContract]
+        List<Salary> GetSalarios(DateTime fechainicio, DateTime FechaFin, int IdEmpleado);
+
+        #endregion Calculo Salarios
+
     }
 }

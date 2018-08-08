@@ -26,6 +26,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentacion", "Documentac
 		Documentacion.docx = Documentacion.docx
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentacion", "Presentacion", "{2D3409AD-59EF-4AC6-9AA7-81EDDA7D42EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rinku.Presentation", "Rinku.Presentation\Rinku.Presentation.csproj", "{4AF8AEA8-E468-4429-A94D-F55F65B440A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rinku.Presentation.Tests", "Rinku.Presentation.Tests\Rinku.Presentation.Tests.csproj", "{709C5B05-CAF8-4B2F-B498-3EA830289D97}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +54,14 @@ Global
 		{BDD9F771-1852-4157-8054-870962862C52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDD9F771-1852-4157-8054-870962862C52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDD9F771-1852-4157-8054-870962862C52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AF8AEA8-E468-4429-A94D-F55F65B440A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AF8AEA8-E468-4429-A94D-F55F65B440A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AF8AEA8-E468-4429-A94D-F55F65B440A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AF8AEA8-E468-4429-A94D-F55F65B440A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{709C5B05-CAF8-4B2F-B498-3EA830289D97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{709C5B05-CAF8-4B2F-B498-3EA830289D97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{709C5B05-CAF8-4B2F-B498-3EA830289D97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{709C5B05-CAF8-4B2F-B498-3EA830289D97}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,5 +74,7 @@ Global
 		{0984D6F6-C25A-4BDF-8236-CFD4B9BF4E8C} = {61CFEFEB-B471-4B1F-B6DE-1BBA8F5F1734}
 		{1FCCDF36-D794-449E-92A6-0C3EEE723A5C} = {61CFEFEB-B471-4B1F-B6DE-1BBA8F5F1734}
 		{BDD9F771-1852-4157-8054-870962862C52} = {FE3BCB1F-F600-4A7E-B39A-EADFAD1D19F8}
+		{4AF8AEA8-E468-4429-A94D-F55F65B440A5} = {2D3409AD-59EF-4AC6-9AA7-81EDDA7D42EC}
+		{709C5B05-CAF8-4B2F-B498-3EA830289D97} = {F2FF0B24-F8F7-4309-BE39-DEB284815A85}
 	EndGlobalSection
 EndGlobal
