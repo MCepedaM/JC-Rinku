@@ -21,6 +21,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rinku.Data", "Rinku.Data\Ri
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rinku.Domain", "Rinku.Domain\Rinku.Domain.csproj", "{BDD9F771-1852-4157-8054-870962862C52}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentacion", "Documentacion", "{2049926D-6087-47F9-9A2B-F0C46D85D944}"
+	ProjectSection(SolutionItems) = preProject
+		Documentacion.docx = Documentacion.docx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
