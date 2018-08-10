@@ -29,6 +29,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentacion", "Presentacion", "{2D3409AD-59EF-4AC6-9AA7-81EDDA7D42EC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rinku.Presentation", "Rinku.Presentation\Rinku.Presentation.csproj", "{4AF8AEA8-E468-4429-A94D-F55F65B440A5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1D29AA0D-B5C0-435F-8485-8252AEACD437} = {1D29AA0D-B5C0-435F-8485-8252AEACD437}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rinku.Presentation.Tests", "Rinku.Presentation.Tests\Rinku.Presentation.Tests.csproj", "{709C5B05-CAF8-4B2F-B498-3EA830289D97}"
 EndProject

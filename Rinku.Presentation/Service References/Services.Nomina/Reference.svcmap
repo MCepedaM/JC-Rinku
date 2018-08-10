@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="142b36ee-7b53-4dab-8810-241eec7f808a" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:56842/Service/RinkuService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="RinkuService.xsd" MetadataType="Schema" ID="eac4923b-6d4f-4076-a4ba-108b40e6539e" SourceId="1" SourceUrl="http://localhost:56842/Service/RinkuService.svc?xsd=xsd1" />
+    <MetadataFile FileName="RinkuService1.xsd" MetadataType="Schema" ID="dbcc1995-d2ae-4c0e-a593-97a644f4e746" SourceId="1" SourceUrl="http://localhost:56842/Service/RinkuService.svc?xsd=xsd0" />
+    <MetadataFile FileName="RinkuService.wsdl" MetadataType="Wsdl" ID="c916262f-7b7a-43ee-80f9-69341eedc737" SourceId="1" SourceUrl="http://localhost:56842/Service/RinkuService.svc?wsdl" />
+    <MetadataFile FileName="RinkuService2.xsd" MetadataType="Schema" ID="42244ba6-6f79-4475-acbe-71e82e3e2496" SourceId="1" SourceUrl="http://localhost:56842/Service/RinkuService.svc?xsd=xsd2" />
+    <MetadataFile FileName="RinkuService.disco" MetadataType="Disco" ID="d12e9028-10ab-4d58-bfc1-6af4a96b3240" SourceId="1" SourceUrl="http://localhost:56842/Service/RinkuService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

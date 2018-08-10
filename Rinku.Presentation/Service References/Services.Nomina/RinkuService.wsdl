@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="RinkuService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:56842/Service/RinkuService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:56842/Service/RinkuService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:56842/Service/RinkuService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Rinku.Domain" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IRinkuService_GetEmpleados_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmpleados" />
+  </wsdl:message>
+  <wsdl:message name="IRinkuService_GetEmpleados_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmpleadosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRinkuService_AddUpdateEmpleados_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUpdateEmpleados" />
+  </wsdl:message>
+  <wsdl:message name="IRinkuService_AddUpdateEmpleados_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUpdateEmpleadosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRinkuService_DeleteEmpleados_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteEmpleados" />
+  </wsdl:message>
+  <wsdl:message name="IRinkuService_DeleteEmpleados_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteEmpleadosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRinkuService_GetEmpleado_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmpleado" />
+  </wsdl:message>
+  <wsdl:message name="IRinkuService_GetEmpleado_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmpleadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRinkuService_AddUpdateMovimientos_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUpdateMovimientos" />
+  </wsdl:message>
+  <wsdl:message name="IRinkuService_AddUpdateMovimientos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUpdateMovimientosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRinkuService_GetMovimientos_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMovimientos" />
+  </wsdl:message>
+  <wsdl:message name="IRinkuService_GetMovimientos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMovimientosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRinkuService_GetMovimientosByEmpleado_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMovimientosByEmpleado" />
+  </wsdl:message>
+  <wsdl:message name="IRinkuService_GetMovimientosByEmpleado_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMovimientosByEmpleadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRinkuService_DeleteMoviento_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMoviento" />
+  </wsdl:message>
+  <wsdl:message name="IRinkuService_DeleteMoviento_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMovientoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRinkuService_GetSalarios_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSalarios" />
+  </wsdl:message>
+  <wsdl:message name="IRinkuService_GetSalarios_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSalariosResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IRinkuService">
+    <wsdl:operation name="GetEmpleados">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRinkuService/GetEmpleados" message="tns:IRinkuService_GetEmpleados_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRinkuService/GetEmpleadosResponse" message="tns:IRinkuService_GetEmpleados_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUpdateEmpleados">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRinkuService/AddUpdateEmpleados" message="tns:IRinkuService_AddUpdateEmpleados_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRinkuService/AddUpdateEmpleadosResponse" message="tns:IRinkuService_AddUpdateEmpleados_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteEmpleados">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRinkuService/DeleteEmpleados" message="tns:IRinkuService_DeleteEmpleados_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRinkuService/DeleteEmpleadosResponse" message="tns:IRinkuService_DeleteEmpleados_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmpleado">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRinkuService/GetEmpleado" message="tns:IRinkuService_GetEmpleado_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRinkuService/GetEmpleadoResponse" message="tns:IRinkuService_GetEmpleado_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUpdateMovimientos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRinkuService/AddUpdateMovimientos" message="tns:IRinkuService_AddUpdateMovimientos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRinkuService/AddUpdateMovimientosResponse" message="tns:IRinkuService_AddUpdateMovimientos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMovimientos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRinkuService/GetMovimientos" message="tns:IRinkuService_GetMovimientos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRinkuService/GetMovimientosResponse" message="tns:IRinkuService_GetMovimientos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMovimientosByEmpleado">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRinkuService/GetMovimientosByEmpleado" message="tns:IRinkuService_GetMovimientosByEmpleado_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRinkuService/GetMovimientosByEmpleadoResponse" message="tns:IRinkuService_GetMovimientosByEmpleado_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMoviento">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRinkuService/DeleteMoviento" message="tns:IRinkuService_DeleteMoviento_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRinkuService/DeleteMovientoResponse" message="tns:IRinkuService_DeleteMoviento_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSalarios">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRinkuService/GetSalarios" message="tns:IRinkuService_GetSalarios_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRinkuService/GetSalariosResponse" message="tns:IRinkuService_GetSalarios_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IRinkuService" type="tns:IRinkuService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetEmpleados">
+      <soap:operation soapAction="http://tempuri.org/IRinkuService/GetEmpleados" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUpdateEmpleados">
+      <soap:operation soapAction="http://tempuri.org/IRinkuService/AddUpdateEmpleados" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteEmpleados">
+      <soap:operation soapAction="http://tempuri.org/IRinkuService/DeleteEmpleados" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmpleado">
+      <soap:operation soapAction="http://tempuri.org/IRinkuService/GetEmpleado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUpdateMovimientos">
+      <soap:operation soapAction="http://tempuri.org/IRinkuService/AddUpdateMovimientos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMovimientos">
+      <soap:operation soapAction="http://tempuri.org/IRinkuService/GetMovimientos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMovimientosByEmpleado">
+      <soap:operation soapAction="http://tempuri.org/IRinkuService/GetMovimientosByEmpleado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMoviento">
+      <soap:operation soapAction="http://tempuri.org/IRinkuService/DeleteMoviento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSalarios">
+      <soap:operation soapAction="http://tempuri.org/IRinkuService/GetSalarios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RinkuService">
+    <wsdl:port name="BasicHttpBinding_IRinkuService" binding="tns:BasicHttpBinding_IRinkuService">
+      <soap:address location="http://localhost:56842/Service/RinkuService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

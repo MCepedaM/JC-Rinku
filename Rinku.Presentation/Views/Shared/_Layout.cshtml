@@ -1,9 +1,11 @@
 ﻿<!DOCTYPE html>
+@using Rinku.Presentation.Helpers;
+
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Cinematogr&aacute;fica Rinku </title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -17,15 +19,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Cinematográfica Rinku", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li><a href="@Url.Action("Index","Employee")"><span class="glyphicon glyphicon-user"></span> Empleado</a></li>
+                    <li><a href="@Url.Action("Index", "Employee")"><span class="glyphicon glyphicon-pencil"></span> Movimientos</a></li>
+                    <li><a href="@Url.Action("Index", "Employee")"><span class="glyphicon glyphicon-list-alt"></span> Nomina</a></li>
                 </ul>
-                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
@@ -33,10 +34,10 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Cinematogr&aacute;fica Rinku derechos reservados</p>
         </footer>
     </div>
-
+    <script type="text/javascript">var virtualPath='@this.AppVirtualPath()';</script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

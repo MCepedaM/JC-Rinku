@@ -14,6 +14,7 @@ using Autofac.Integration.Mvc;
 using System.Web.Http.Dependencies;
 using System.Web.Mvc;
 using System.Data.SqlClient;
+using System.Data.Entity.Infrastructure;
 
 namespace Rinku.Services.Main.Service
 {
@@ -54,10 +55,24 @@ namespace Rinku.Services.Main.Service
 
         public bool DeleteEmpleados(Employee emp)
         {
-            _EmployeeRepository.Delete(emp.Id);
-            _EmployeeRepository.SaveChanges();
+            try
+            {
+                _EmployeeRepository.Delete(emp.Id);
+                _EmployeeRepository.SaveChanges();
 
-            return true;
+                return true;
+
+            }
+            catch (DbUpdateException dbEx)
+            {
+                return false;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
         }
 
         public Employee GetEmpleado(Employee emp)

@@ -1,0 +1,154 @@
+﻿@using Rinku.Presentation.Helpers;
+@model IEnumerable<Rinku.Presentation.Models.EmployeeViewModel>
+
+@{
+    ViewBag.Title = "Lista de Empleados";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Empleados en Rinku</h2>
+
+
+
+<div class="row">
+    <p>
+        <a href="@Url.Action("Create","Employee")" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-user"></span> Nuevo Empleado</a>
+    </p>
+
+    <div >
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    <strong>Lista de empleados.</strong>
+                </h1>
+            </div>
+            <br />
+
+            <table class="table table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nombre)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Rol)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.interno)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Activo)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tblEmpleados">
+                    @foreach (var item in Model)
+                    {
+                        
+                       string idNombre = "row" + item.Id.ToString();
+                        
+                        <tr id="@idNombre">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nombre)
+                            </td>
+                            <td>
+                                @{
+                                    string rolDescription = item.getDescripcionRol();
+                                }
+                                @Html.DisplayFor(modelItem => rolDescription)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.interno)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Activo)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                <button type="button" class="btn btn-danger btn-sm" onclick="deleteMe(@item.Id, '@item.Nombre')">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </td>
+                        </tr>
+                        }
+                </tbody>
+
+            </table>
+            <div class="text-center">
+                <ul class="pagination pager" id="myPager"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+
+<script type="text/javascript">
+    @(Html.JsMinify(@<text>
+
+
+    function deleteMe(id, nombre) {
+        
+        var data = { "id": id };
+        bootbox.confirm({
+            title: "Eliminar empleado",
+            message: "Desea eliminar a este empleado \"" + nombre + "\"? Esta accion no se puede revertir.",
+            buttons: {
+                cancel: {
+                    label: '<i class="fa fa-times"></i> Cancelar'
+                },
+                confirm: {
+                    label: '<i class="fa fa-check"></i> Confirmar'
+                }
+            },
+            callback: function (result) {
+                if (result) {
+                    $.ajax({
+                        type: "GET",
+                        url: virtualPath + "Employee/Delete",
+                        data: data,
+                        beforeSend: beforeSendAjax,
+                        success: mysuccess,
+                        error: error,
+                        complete: function () {
+                            $('#ajax').modal('hide');
+                        }
+
+                    });
+                }
+
+            }
+        });
+    }
+
+
+    function mysuccess(info) {
+        if (info.isSuccess) {
+            $("#row" + info.Id).remove();
+            Mensaje("Éxito", info.msj);
+        }
+        else if (info.isWarning) {
+            MessageWarning("Advertencia.", info.msj);
+        }
+        else {
+            Error("Error", info.msj);
+        }
+    }
+
+
+
+    $("#tblEmpleados").pageMe({ pagerSelector: '#myPager', showPrevNext: true, hidePageNumbers: false, perPage: 5 });
+
+    </text>))
+</script>
+
+    
+}
