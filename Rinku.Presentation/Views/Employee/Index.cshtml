@@ -42,7 +42,7 @@
                         <th>
                             @Html.DisplayNameFor(model => model.Activo)
                         </th>
-                        <th></th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody id="tblEmpleados">
@@ -71,7 +71,7 @@
                                 @Html.DisplayFor(modelItem => item.Activo)
                             </td>
                             <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                <a href="@Url.Action("Edit","Employee", new { id = item.Id })" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></a> &nbsp;|&nbsp;  
                                 <button type="button" class="btn btn-danger btn-sm" onclick="deleteMe(@item.Id, '@item.Nombre')">
                                     <span class="glyphicon glyphicon-remove"></span>
                                 </button>

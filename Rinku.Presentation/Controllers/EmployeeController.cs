@@ -89,7 +89,26 @@ namespace Rinku.Presentation.Controllers
         // GET: Employee/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    EmployeeViewModel empModel = new EmployeeViewModel();
+                    var serviceNomina = GetService.nominaService;
+                    var emple= serviceNomina.GetEmpleado(new Service.Employee() {  Id= id });
+                    empModel.CopyPropertiesFrom(emple);
+
+                    return View(empModel);
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { isError = true, isWarning = false, isSuccess = false, msj = ex.Message });
+                }
+            }
+            else
+            {
+                return Json(new { isError = false, isWarning = true, isSuccess = false, msj = Errors.getModelError(ModelState) });
+            }   
         }
 
         // POST: Employee/Edit/5

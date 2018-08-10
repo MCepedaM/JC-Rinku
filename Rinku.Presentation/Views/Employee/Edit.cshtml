@@ -2,20 +2,23 @@
 @model Rinku.Presentation.Models.EmployeeViewModel
 
 @{
-    ViewBag.Title = "Alta empleado";
+    ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Crear un nuevo empleado</h2>
+<h2>Edit</h2>
 
-@using (Html.BeginForm()) 
+
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Rinku empleados</h4>
+        <h4>EmployeeViewModel</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
         <div class="form-group">
             @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -25,7 +28,6 @@
         </div>
 
         <div class="form-group">
-            
             @Html.LabelFor(model => model.Rol, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("Rol", new List<SelectListItem>
@@ -33,9 +35,10 @@
                       new SelectListItem{ Text = "Chofer", Value = "1" },
                       new SelectListItem{ Text = "Cargador", Value = "2" },
                       new SelectListItem{ Text = "Auxiliar", Value = "3" }
-                    }, htmlAttributes: new { @class = "form-control", id = "lstRol" })
+                    }, htmlAttributes: new { @class = "form-control", id = "Rol" })
 
-                @*Html.EditorFor(model => model.Rol, new { htmlAttributes = new { @class = "form-control" } })*@
+
+                @*@Html.EditorFor(model => model.Rol, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.Rol, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -61,14 +64,12 @@
         </div>
 
         <div class="well" style="max-width: 400px; margin: 0 auto 10px;">
-            <button type="button" class="btn btn-success btn-lg btn-block" onclick="save()">
-                <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp; Guardar Empleado
+            <button type="button" class="btn btn-success btn-lg btn-block" onclick="update()">
+                <span class="glyphicon glyphicon-pencil"></span>&nbsp; Guardar Empleado
             </button>
         </div>
     </div>
 }
-
-
 
 <div>
     <a href="@Url.Action("Index","Employee")" class=""><span class="glyphicon glyphicon-hand-left"></span> Regresar a lista de empleados</a>
@@ -80,7 +81,7 @@
     <script type="text/javascript">
             @(Html.JsMinify(@<text>
 
-        function save() {
+        function update() {
             $.ajax({
                 type: "POST",
                 url: virtualPath + "Employee/Create",
