@@ -114,6 +114,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetMovientoById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="movId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMovientoByIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Rinku.Domain" minOccurs="0" name="GetMovientoByIdResult" nillable="true" type="q11:Movement" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetSalarios">
     <xs:complexType>
       <xs:sequence>
@@ -126,7 +140,7 @@
   <xs:element name="GetSalariosResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Rinku.Domain" minOccurs="0" name="GetSalariosResult" nillable="true" type="q11:ArrayOfSalary" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Rinku.Domain" minOccurs="0" name="GetSalariosResult" nillable="true" type="q12:ArrayOfSalary" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

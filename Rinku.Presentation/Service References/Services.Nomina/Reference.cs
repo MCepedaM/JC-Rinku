@@ -536,6 +536,12 @@ namespace Rinku.Presentation.Services.Nomina {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRinkuService/DeleteMoviento", ReplyAction="http://tempuri.org/IRinkuService/DeleteMovientoResponse")]
         System.Threading.Tasks.Task<bool> DeleteMovientoAsync(Rinku.Presentation.Services.Nomina.Movement mov);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRinkuService/GetMovientoById", ReplyAction="http://tempuri.org/IRinkuService/GetMovientoByIdResponse")]
+        Rinku.Presentation.Services.Nomina.Movement GetMovientoById(int movId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRinkuService/GetMovientoById", ReplyAction="http://tempuri.org/IRinkuService/GetMovientoByIdResponse")]
+        System.Threading.Tasks.Task<Rinku.Presentation.Services.Nomina.Movement> GetMovientoByIdAsync(int movId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRinkuService/GetSalarios", ReplyAction="http://tempuri.org/IRinkuService/GetSalariosResponse")]
         Rinku.Presentation.Services.Nomina.Salary[] GetSalarios(System.DateTime fechainicio, System.DateTime FechaFin, int IdEmpleado);
         
@@ -632,6 +638,14 @@ namespace Rinku.Presentation.Services.Nomina {
         
         public System.Threading.Tasks.Task<bool> DeleteMovientoAsync(Rinku.Presentation.Services.Nomina.Movement mov) {
             return base.Channel.DeleteMovientoAsync(mov);
+        }
+        
+        public Rinku.Presentation.Services.Nomina.Movement GetMovientoById(int movId) {
+            return base.Channel.GetMovientoById(movId);
+        }
+        
+        public System.Threading.Tasks.Task<Rinku.Presentation.Services.Nomina.Movement> GetMovientoByIdAsync(int movId) {
+            return base.Channel.GetMovientoByIdAsync(movId);
         }
         
         public Rinku.Presentation.Services.Nomina.Salary[] GetSalarios(System.DateTime fechainicio, System.DateTime FechaFin, int IdEmpleado) {

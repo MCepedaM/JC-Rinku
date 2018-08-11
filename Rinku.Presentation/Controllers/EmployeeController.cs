@@ -38,6 +38,36 @@ namespace Rinku.Presentation.Controllers
             return View(lstEmp);
         }
 
+        public ActionResult AutocompleteEmpleado()
+        {
+            List<EmployeeViewModel> lstEmp = new List<EmployeeViewModel>();
+            EmployeeViewModel empModel = null;
+
+            try
+            {
+                var serviceNomina = GetService.nominaService;
+                var lstEmployees = serviceNomina.GetEmpleados();
+
+                foreach (var emp in lstEmployees)
+                {
+                    empModel = new EmployeeViewModel();
+                    empModel.CopyPropertiesFrom(emp);
+                    lstEmp.Add(empModel);
+                }
+
+                var empData = lstEmp
+                    .OrderBy(o => o.Nombre)
+                    .Select(miniEmp => new { nombre = miniEmp.Id.ToString() + " - " + miniEmp.Nombre + " [" + miniEmp.getDescripcionRol() + "]" });
+
+                return Json(empData, JsonRequestBehavior.AllowGet);
+
+            }
+            catch (Exception ex)
+            {
+                return Json(new { isWarning = false, isSuccess = false, msj = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         // GET: Employee/Details/5
         public ActionResult Details(int id)
         {

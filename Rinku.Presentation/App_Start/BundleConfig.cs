@@ -10,7 +10,11 @@ namespace Rinku.Presentation
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js")
-                         .Include("~/Scripts/SiteScripts.js"));
+                        .Include("~/Scripts/jquery-ui.min.js")
+                        .Include("~/Scripts/auto-complete.js")
+                         .Include("~/Scripts/SiteScripts.js")
+                         .Include("~/Scripts/bootstrap-datetimepicker.min.js")
+                         ); 
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -27,7 +31,10 @@ namespace Rinku.Presentation
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/jquery-ui.min.css",
+                      "~/Content/auto-complete.css",
+                      "~/Content/bootstrap-datetimepicker.css",
+                      "~/Content/Site.css"));
 
             //BundleTable.EnableOptimizations = true;
         }

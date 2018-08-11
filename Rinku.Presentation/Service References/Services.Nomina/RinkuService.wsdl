@@ -55,6 +55,12 @@
   <wsdl:message name="IRinkuService_DeleteMoviento_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteMovientoResponse" />
   </wsdl:message>
+  <wsdl:message name="IRinkuService_GetMovientoById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMovientoById" />
+  </wsdl:message>
+  <wsdl:message name="IRinkuService_GetMovientoById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMovientoByIdResponse" />
+  </wsdl:message>
   <wsdl:message name="IRinkuService_GetSalarios_InputMessage">
     <wsdl:part name="parameters" element="tns:GetSalarios" />
   </wsdl:message>
@@ -93,6 +99,10 @@
     <wsdl:operation name="DeleteMoviento">
       <wsdl:input wsaw:Action="http://tempuri.org/IRinkuService/DeleteMoviento" message="tns:IRinkuService_DeleteMoviento_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRinkuService/DeleteMovientoResponse" message="tns:IRinkuService_DeleteMoviento_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMovientoById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRinkuService/GetMovientoById" message="tns:IRinkuService_GetMovientoById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRinkuService/GetMovientoByIdResponse" message="tns:IRinkuService_GetMovientoById_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetSalarios">
       <wsdl:input wsaw:Action="http://tempuri.org/IRinkuService/GetSalarios" message="tns:IRinkuService_GetSalarios_InputMessage" />
@@ -166,6 +176,15 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteMoviento">
       <soap:operation soapAction="http://tempuri.org/IRinkuService/DeleteMoviento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMovientoById">
+      <soap:operation soapAction="http://tempuri.org/IRinkuService/GetMovientoById" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

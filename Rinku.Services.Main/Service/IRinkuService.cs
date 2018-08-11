@@ -80,6 +80,14 @@ namespace Rinku.Services.Main.Service
         [OperationContract]
         bool DeleteMoviento(Movement mov);
 
+        /// <summary>
+        /// Obtine un movimiento
+        /// </summary>
+        /// <param name="movId"></param>
+        /// <returns></returns>
+        [OperationContract]
+        Movement GetMovientoById(int movId);
+
         #endregion Movimientos
 
         #region Calculo Salarios

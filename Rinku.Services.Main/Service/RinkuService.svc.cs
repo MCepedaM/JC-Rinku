@@ -120,6 +120,11 @@ namespace Rinku.Services.Main.Service
             return true;
         }
 
+        public Movement GetMovientoById(int movId)
+        {
+            return _MovementRepository.GetAll(w => w.Id == movId, p => p.Empleado).FirstOrDefault();
+        }
+
         #endregion Movimientos
 
         #region Calculo Salarios

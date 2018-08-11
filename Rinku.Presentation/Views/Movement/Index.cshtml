@@ -1,0 +1,165 @@
+﻿@using Rinku.Presentation.Helpers;
+@model IEnumerable<Rinku.Presentation.Models.MovementViewModel>
+
+@{
+    ViewBag.Title = "Movimentos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Movimientos realizados</h2>
+
+
+
+<div class="row">
+    <p>
+        <a href="@Url.Action("Create","Movement")" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-user"></span> Nuevo Movimiento</a>
+    </p>
+
+    <div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    <strong>Lista de empleados.</strong>
+                </h1>
+            </div>
+            <br />
+
+            <table class="table table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Empleado.Nombre)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Fecha)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Entregas)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CubreTurno)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CubreRol)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tblMovimientos">
+                    @foreach (var item in Model)
+                    {
+                        string idNombre = "row" + item.Id.ToString();
+                        <tr id="@idNombre">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Empleado.Nombre)
+                            </td>
+                            <td>
+                                @{ string dateFormat = item.Fecha.ToString("dd-MM-yyyy");}
+                                @Html.DisplayFor(modelItem => dateFormat)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Entregas)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CubreTurno)
+                            </td>
+                            <td>
+                                @{
+                                    string rolDescription = "--";
+                                    if (item.CubreTurno)
+                                    {
+                                        switch (item.CubreRol)
+                                        {
+                                            case 1:
+                                                rolDescription = "Chofer";
+                                                break;
+                                            case 2:
+                                                rolDescription = "Cargador";
+                                                break;
+                                        }
+                                    }
+                                }
+                                @Html.DisplayFor(modelItem => rolDescription)
+                                @*@Html.DisplayFor(modelItem => item.CubreRol)*@
+                            </td>
+                            <td>
+                                <a href="@Url.Action("Edit","Movement", new { id = item.Id })" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></a> &nbsp;|&nbsp; 
+                                <button type="button" class="btn btn-danger btn-sm" onclick="deleteMe(@item.Id, '@item.Empleado.Nombre')">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+
+            </table>
+            <div class="text-center">
+                <ul class="pagination pager" id="myPager"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+
+    <script type="text/javascript">
+    @(Html.JsMinify(@<text>
+
+
+    function deleteMe(id, nombre) {
+
+        var data = { "id": id };
+        bootbox.confirm({
+            title: "Eliminar empleado",
+            message: "Desea eliminar el movimiento de este empleado \"" + nombre + "\"? Esta accion no se puede revertir.",
+            buttons: {
+                cancel: {
+                    label: '<i class="fa fa-times"></i> Cancelar'
+                },
+                confirm: {
+                    label: '<i class="fa fa-check"></i> Confirmar'
+                }
+            },
+            callback: function (result) {
+                if (result) {
+                    $.ajax({
+                        type: "GET",
+                        url: virtualPath + "Movement/Delete",
+                        data: data,
+                        beforeSend: beforeSendAjax,
+                        success: mysuccess,
+                        error: error,
+                        complete: function () {
+                            $('#ajax').modal('hide');
+                        }
+
+                    });
+                }
+
+            }
+        });
+    }
+
+
+    function mysuccess(info) {
+        if (info.isSuccess) {
+            $("#row" + info.Id).remove();
+            Mensaje("Éxito", info.msj);
+        }
+        else if (info.isWarning) {
+            MessageWarning("Advertencia.", info.msj);
+        }
+        else {
+            Error("Error", info.msj);
+        }
+    }
+
+
+
+    $("#tblMovimientos").pageMe({ pagerSelector: '#myPager', showPrevNext: true, hidePageNumbers: false, perPage: 10 });
+
+    </text>))
+    </script>
+}

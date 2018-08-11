@@ -1,0 +1,157 @@
+﻿@using Rinku.Presentation.Helpers;
+@model Rinku.Presentation.Models.MovementViewModel
+
+@{
+    ViewBag.Title = "Crear Movimiento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Agregar movimientos</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Movimientos de empleados</h4>
+        <hr />
+        <div class="ui-widget">
+            <label for="search">Usuario: </label>  
+            <input id="EmpleadoSelect"  name="EmpleadoSelect" placeholder="Captura Id o Nombre del Empleado" class="inputFind" />
+        </div>
+        
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Fecha, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Fecha, new { maxlength = "10", size = "50", @class = "date-picker inputDate", auntocomplete="off"})
+            </div>
+        </div>
+        
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Entregas, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Entregas, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Entregas, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div id="esAuxiliar">
+            <div class="form-group">
+                @Html.LabelFor(model => model.CubreTurno, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.CubreTurno)
+                        @Html.ValidationMessageFor(model => model.CubreTurno, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div id="CubreTurnoform">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CubreRol, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("CubreRol", new List<SelectListItem>
+                            {
+                              new SelectListItem{ Text = "Chofer", Value = "1" },
+                              new SelectListItem{ Text = "Cargador", Value = "2" }
+                            }, htmlAttributes: new { @class = "form-control", id = "CubreRol" })
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="well" style="max-width: 400px; margin: 0 auto 10px;">
+            <button type="button" class="btn btn-success btn-lg btn-block" onclick="save()">
+                <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp; Guardar Movimiento
+            </button>
+        </div>
+    </div>
+}
+
+
+<div>
+    <a href="@Url.Action("Index","Movement", new { fechaInicio = DateTime.Now.AddDays(-DateTime.Now.Day + 1).Date, fechaFin= DateTime.Now.AddDays(-DateTime.Now.Day).AddMonths(1), idEmpleado = 0 })" class=""><span class="glyphicon glyphicon-hand-left"></span> Regresar a lista de Movimientos</a>
+</div>
+
+
+
+@section scripts{
+    <script type="text/javascript">
+       
+        $(document).ready(function () {
+
+            $('#esAuxiliar').toggle("fast");
+            $('#CubreTurnoform').toggle("fast");
+
+            $("#CubreTurno").change(function () {
+                $('#CubreTurnoform').toggle("slow");
+            });
+
+            $('.date-picker').datepicker({ dateFormat: 'dd/mm/yy' });;
+
+            $("#EmpleadoSelect").change(function () {
+                var res = this.value.split("[");
+
+                if (res.length == 2) {
+                    if (res[1] == "Auxiliar]")
+                        $('#esAuxiliar').toggle("slow");
+                    else {
+                        $('#esAuxiliar').hide("slow");
+                        $('#CubreTurno').prop('checked', false);
+                        $('#CubreTurnoform').hide("slow");
+                    }
+                }
+                else {
+                    $('#CubreTurno').prop('checked', false);
+                    $('#CubreTurno').prop('checked', false);
+                    $('#CubreTurnoform').hide("slow");
+                }
+
+            });
+
+            new autoComplete({
+                selector: 'input[name=EmpleadoSelect]',
+                minChars: 1,
+                source: function(term, suggest){
+
+                    $.ajax({
+                        url: virtualPath + "Employee/AutocompleteEmpleado",
+                        data: { },
+                        dataType: 'json',
+                        type: 'GET',
+                        success: function (data) {
+                            var suggestions = [];
+                            for (i = 0; i < data.length; i++)
+                                if (~(data[i].nombre).toUpperCase().indexOf(term) || ~(data[i].nombre).toLowerCase().indexOf(term))
+                                    suggestions.push(data[i].nombre);
+                            suggest(suggestions);
+                        }
+                    })
+                }});
+
+            
+
+        })
+
+        function save() {
+            $.ajax({
+                type: "POST",
+                url: virtualPath + "Movement/Create",
+                data: $("form").serialize(),
+                beforeSend: beforeSendAjax,
+                success: success,
+                error: error,
+                complete: function () {
+                    $('#ajax').modal('hide');
+                }
+
+            });
+        }
+
+       
+        
+
+    </script>
+  }
