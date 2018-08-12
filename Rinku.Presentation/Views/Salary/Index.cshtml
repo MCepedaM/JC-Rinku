@@ -1,0 +1,227 @@
+﻿@model IEnumerable<Rinku.Presentation.Models.SalaryViewModel>
+
+@{
+    ViewBag.Title = "Calculo de nomina";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Calculo de N&oacute;mina</h2>
+
+
+<div class="panel panel-primary">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Calcula pagos</div>
+    <div class="panel-body">
+        <p>
+            Puedes realizar el calculo para los empleados, selecciona el filtro adecuado seg&uacute;n lo requerido,
+            se puede filtrar por empleado o por todos los empleados siempre en un mes especifico.
+        </p>
+
+        <div class="row">
+            <div class="col-md-3">
+                <label for="search">Mes del Calculo: </label><br />
+                <input id="fechaCalculo" name="fechaCalculo" placeholder="Fecha a calcular" class="date-picker inputDate" />
+            </div>
+            <div class="col-md-6">
+                <label for="search">Usuario(Opcional): </label><br />
+                <input id="EmpleadoSelect" name="EmpleadoSelect" placeholder="Captura Id o Nombre del Empleado" class="inputFind" />
+            </div>
+
+            <div class="col-md-3">
+                <br />
+                    <button type="button" class="btn btn-primary btn-lg btn-block" onclick="findSalaries()">
+                        <span class="glyphicon glyphicon-flash"></span>&nbsp; Calular Salario
+                    </button>
+                
+
+            </div>
+        </div>
+        <br />
+
+    </div>
+</div>
+
+    <table class="table table-condensed table-hover" id="tbl">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Rol)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.interno)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DiasLaborados)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Entregas)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Adicional)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BonoXHora)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Subtotal)
+                </th>
+                <th>
+                    Iva
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MontoTotal)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ValesDespensa)
+                </th>
+                <th>
+                    Total Final
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+       
+
+    </table>
+
+    
+
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#fechaCalculo').datepicker({
+                changeMonth: true,
+                changeYear: true,
+                showButtonPanel: true,
+                dateFormat: 'MM yy'
+            });
+
+            new autoComplete({
+                selector: 'input[name=EmpleadoSelect]',
+                minChars: 1,
+                source: function(term, suggest){
+
+                    $.ajax({
+                        url: virtualPath + "Employee/AutocompleteEmpleado",
+                        data: { },
+                        dataType: 'json',
+                        type: 'GET',
+                        success: function (data) {
+                            var suggestions = [];
+                            for (i = 0; i < data.length; i++)
+                                if (~(data[i].nombre).toUpperCase().indexOf(term) || ~(data[i].nombre).toLowerCase().indexOf(term))
+                                    suggestions.push(data[i].nombre);
+                            suggest(suggestions);
+                        }
+                    })
+                }});
+        })
+
+        function findSalaries() {
+            
+            var selectFecha=$('#fechaCalculo').val()
+
+            if (selectFecha != "") {
+                var empleado = $("#EmpleadoSelect").val();
+                var idEmpleado = 0;
+                if (empleado != "")
+                    idEmpleado = empleado.split('-')[0].trim();
+
+                var fecha = GeFecha();
+
+                var curr_date = fecha.getDate();
+                var curr_month = fecha.getMonth() + 1; //Months are zero based
+                var curr_year = fecha.getFullYear();
+
+                var fechaSend = curr_date + "-" + curr_month + "-" + curr_year;
+
+                var parametros = {
+                    "fechaString": fechaSend,
+                    "idEmpleado": idEmpleado
+                };
+
+                $.ajax({
+                    type: "GET",
+                    url: virtualPath + "Salary/GetCalculoNomina",
+                    data: parametros,
+                    beforeSend: beforeSendAjax,
+                    success: function (info) {
+                        $("#tbl tbody").html(info);
+                    },
+                    error: error,
+                    complete: function () {
+                        $('#ajax').modal('hide');
+                    }
+
+                });
+            }
+            else {
+                MessageWarning("Faltan datos","Debe seleccionar una fecha");
+            }
+
+        }
+
+        function GeFecha() {
+            var dateSplit = $('#fechaCalculo').val().split(' ');
+            var mes=1;
+            switch(dateSplit[0]) {
+                case "Febrero":
+                case "February":
+                    mes=2;
+                    break;
+                case "Marzo":
+                case "March":
+                    mes=3;
+                    break;
+                case "Abril":
+                case "April":
+                    mes=4;
+                    break;
+                case "Mayo":
+                case "May":
+                    mes=5;
+                    break;
+                case "Junio":
+                case "Enero":
+                    mes=6;
+                    break;
+                case "Julio":
+                case "July":
+                    mes=7;
+                    break;
+                case "Agosto":
+                case "August":
+                    mes=8;
+                    break;
+                case "Septiembre":
+                case "September":
+                    mes=9;
+                    break;
+                case "Octubre":
+                case "October":
+                    mes = 10;
+                    break;
+                case "Noviembre":
+                case "November":
+                    mes=11;
+                    break;
+                case "Diciembre":
+                case "December":
+                    mes=12;
+                    break;
+            }
+            return new Date(dateSplit[1],mes-1,1);
+        }
+
+
+
+    </script>
+}

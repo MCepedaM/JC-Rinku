@@ -25,7 +25,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="@Url.Action("Index","Employee")"><span class="glyphicon glyphicon-user"></span> Empleado</a></li>
                     <li><a href="@Url.Action("Index", "Movement", new { fechaInicio = DateTime.Now.AddDays(-DateTime.Now.Day + 1).Date, fechaFin= DateTime.Now.AddDays(-DateTime.Now.Day).AddMonths(1), idEmpleado = 0 })"><span class="glyphicon glyphicon-th-list"></span> Movimientos</a></li>
-                    <li><a href="@Url.Action("Index", "Employee")"><span class="glyphicon glyphicon-list-alt"></span> Nomina</a></li>
+                    <li><a href="@Url.Action("Index", "Salary")"><span class="glyphicon glyphicon-list-alt"></span> Nomina</a></li>
                 </ul>
             </div>
         </div>

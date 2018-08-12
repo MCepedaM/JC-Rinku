@@ -5,7 +5,6 @@
 <div class="jumbotron">
     <h1><span class="glyphicon glyphicon-film"></span> Cinematogr&aacute;fica Rinku</h1>
     <p class="lead">Sistema para alta de empleados, agregar los movimientos realizados por los empleados y calculo de n&oacute;mina mensual</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
 
 <div class="row">
@@ -15,14 +14,21 @@
             Puedes dar de alta empleados, realizar cambios sobre, buscar empleados, consultar la lista de empleados
             y sobre estos realizar distintas acciones como las ya mensionadas.
         </p>
+        <p><a href="@Url.Action("Index","Employee")" class="btn btn-default"><span class="glyphicon glyphicon-user"></span> Empleado</a>
+            </p>
     </div>
     <div class="col-md-4">
         <h2>Movimientos</h2>
         <p>Registra las entregas realizados por tus empleados, dias trabajados, horarios cubiertos por auxiliares y m&aacute;s !!</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <p>
+            <a class="btn btn-default" href="@Url.Action("Index", "Movement", new { fechaInicio = DateTime.Now.AddDays(-DateTime.Now.Day + 1).Date, fechaFin= DateTime.Now.AddDays(-DateTime.Now.Day).AddMonths(1), idEmpleado = 0 })"><span class="glyphicon glyphicon-th-list"></span> Movimientos</a>
+        </p>
     </div>
     <div class="col-md-4">
         <h2>N&oacute;mina Mensual</h2>
         <p>Calcula la nomina de una manera sencilla con base a tus movimientos del mes.</p>
+        <p>
+            <a href="@Url.Action("Index", "Salary")" class="btn btn-default" ><span class="glyphicon glyphicon-list-alt"></span> Nomina</a>
+        </p>
     </div>
 </div>
